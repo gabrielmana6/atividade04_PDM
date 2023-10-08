@@ -55,10 +55,9 @@ tools:context=".FormsSenha">
             android:id="@+id/form_tvTamanhoSenha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="Tamanho"
             android:textSize="16sp"
-            android:textColor="#000000"
-            android:layout_gravity="center_horizontal" />
+            android:textColor="#000000" />
 
         <com.google.android.material.slider.Slider
             android:id="@+id/form_slider"
@@ -67,7 +66,8 @@ tools:context=".FormsSenha">
             android:layout_marginTop="8dp"
             android:value="4"
             android:valueFrom="4"
-            android:valueTo="20" />
+            android:valueTo="20"
+            android:stepSize="1"/>
 
     </LinearLayout>
 

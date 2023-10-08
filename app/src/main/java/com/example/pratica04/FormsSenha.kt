@@ -40,21 +40,24 @@ class FormsSenha : AppCompatActivity() {
         btnCancelar = findViewById(R.id.form_btnCancelar)
 
 
-
-
-
 //EVENTOS
 
         btnGerar.setOnClickListener{
-            val senha = Senha("Senha de exemplo", 12, contemLetrasMaiusculas = true, contemNumeros = true, contemCaracteresEspeciais = false)
+            var senha = Senha()
+            senha.descricao = editText.text.toString()
+            senha.tamanho = slider.value.toInt()
+            senha.contemLetrasMaiusculas = check1.isChecked
+            senha.contemNumeros = check2.isChecked
+            senha.contemCaracteresEspeciais = check3.isChecked
 
+            senha.gerarSenha()
 
             val msg = "${senha.descricao};" +
                     "${senha.senha};" +
-                    "${senha.getTamanhoSenha()};" +
-                    "${senha.possuiLetrasMaiusculas()};" +
-                    "${senha.possuiNumeros()};" +
-                    "${senha.possuiCaracteresEspeciais()}"
+                    "${senha.tamanho};" +
+                    "${senha.contemLetrasMaiusculas};" +
+                    "${senha.contemNumeros};" +
+                    "${senha.contemCaracteresEspeciais}"
 
             val intent = Intent().apply {
                 putExtra("MSG", "${msg}")

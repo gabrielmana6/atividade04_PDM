@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class Adapter(var context: Context, var lista: MutableList<String>): BaseAdapter() {
+class Adapter(var context: Context, var senhas: Senhas): BaseAdapter() {
 
     override fun getCount(): Int {
-        return this.lista.size
+        return this.senhas.getSize()
     }
 
     override fun getItem(position: Int): Any {
-        return this.lista.get(position)
+        return this.senhas.getSenha(position)
     }
 
     override fun getItemId(position: Int): Long {
@@ -29,19 +29,16 @@ class Adapter(var context: Context, var lista: MutableList<String>): BaseAdapter
         }
 
         val textView = novoView.findViewById<TextView>(R.id.tvItemList)
-        val texto = this.lista.get(position)
-        textView.text = texto
+        val senha = this.senhas.getSenha(position)
+        val descricao = senha.descricao
+        val tamanho = senha.tamanho
+        textView.text = "${descricao} (${tamanho})"
 
         return novoView
     }
 
-    fun add(texto: String) {
-        this.lista.add(texto)
-        notifyDataSetChanged()
-    }
-
-    fun remove(texto: String) {
-        this.lista.remove(texto)
+    fun add(senha: Senha) {
+        this.senhas.add(senha)
         notifyDataSetChanged()
     }
 }

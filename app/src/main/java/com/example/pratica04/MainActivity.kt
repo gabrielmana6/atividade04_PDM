@@ -35,8 +35,18 @@ class MainActivity : AppCompatActivity() {
                 val msg = it.data?.getStringExtra("MSG")
 
                 if (msg != null) {
-                    (this.lvSenhas.adapter as Adapter).add(msg)
-                    Log.i("--------------", this.senhas.listaSenhas.toString())
+                    val e = separarString(msg)
+
+                    var senha = Senha()
+                    senha.descricao = e[0]
+                    senha.senha = e[1]
+                    senha.tamanho = e[2].toInt()
+                    senha.contemLetrasMaiusculas =e[3].toBoolean()
+                    senha.contemNumeros = e[4].toBoolean()
+                    senha.contemCaracteresEspeciais =e[5].toBoolean()
+
+                    Log.i("SENHA CRIADA", "${senha.senha}")
+                    (this.lvSenhas.adapter as Adapter).add(senha)
                 }
             }
         }
@@ -50,5 +60,4 @@ class MainActivity : AppCompatActivity() {
     fun separarString(string: String): List<String> {
         return string.split(";")
     }
-
 }
