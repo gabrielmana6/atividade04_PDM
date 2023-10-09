@@ -41,4 +41,9 @@ class Adapter(var context: Context, var senhas: Senhas): BaseAdapter() {
         this.senhas.add(senha)
         notifyDataSetChanged()
     }
+
+    fun remove(senha: Senha) {
+        this.senhas.remove(senha)
+        notifyDataSetChanged()
+    }
 }

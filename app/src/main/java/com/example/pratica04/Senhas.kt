@@ -18,4 +18,8 @@ class Senhas {
         this.listaSenhas.add(senha)
     }
 
+    fun remove(senha: Senha) {
+        this.listaSenhas.remove(senha)
+    }
+
 }

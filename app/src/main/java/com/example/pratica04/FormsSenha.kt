@@ -65,5 +65,9 @@ class FormsSenha : AppCompatActivity() {
             setResult(RESULT_OK, intent)
             finish()
         }
+
+        btnCancelar.setOnClickListener{
+            finish()
+        }
     }
 }

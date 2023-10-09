@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Pratica04"
         tools:targetApi="31">
         <activity
+            android:name=".FormsAlterarSenha"
+            android:exported="false" />
+        <activity
             android:name=".FormsSenha"
             android:exported="false" />
         <activity
