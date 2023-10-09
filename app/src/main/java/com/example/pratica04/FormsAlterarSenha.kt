@@ -71,15 +71,25 @@ class FormsAlterarSenha : AppCompatActivity() {
 //EVENTOS
 
         btnAlterar.setOnClickListener{
-            senha.descricao = editText.text.toString()
-            senha.tamanho = slider.value.toInt()
-            senha.contemLetrasMaiusculas = check1.isChecked
-            senha.contemNumeros = check2.isChecked
-            senha.contemCaracteresEspeciais = check3.isChecked
 
-            senha.gerarSenha()
+            var senha_nova = Senha()
+            senha_nova.descricao = editText.text.toString()
+            senha_nova.tamanho = slider.value.toInt()
+            senha_nova.senha = senha.senha
+            senha_nova.contemLetrasMaiusculas = check1.isChecked
+            senha_nova.contemNumeros = check2.isChecked
+            senha_nova.contemCaracteresEspeciais = check3.isChecked
 
-            val msg = "${senha.descricao};" +
+            senha_nova.gerarSenha()
+
+            val msg_senha_nova = "${senha_nova.descricao};" +
+                    "${senha_nova.senha};" +
+                    "${senha_nova.tamanho};" +
+                    "${senha_nova.contemLetrasMaiusculas};" +
+                    "${senha_nova.contemNumeros};" +
+                    "${senha_nova.contemCaracteresEspeciais}"
+
+            val msg_senha = "${senha.descricao};" +
                     "${senha.senha};" +
                     "${senha.tamanho};" +
                     "${senha.contemLetrasMaiusculas};" +
@@ -87,7 +97,8 @@ class FormsAlterarSenha : AppCompatActivity() {
                     "${senha.contemCaracteresEspeciais}"
 
             val intent = Intent().apply {
-                putExtra("ALTERAR", "${msg}")
+                putExtra("SENHA_VELHA", "${msg_senha}")
+                putExtra("SENHA_NOVA", "${msg_senha_nova}")
             }
             setResult(RESULT_OK, intent)
             finish()

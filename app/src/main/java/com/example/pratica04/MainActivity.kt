@@ -22,10 +22,21 @@ class MainActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             val msg = result.data?.getStringExtra("MSG")
             val msg_excluir = result.data?.getStringExtra("DELETE")
-            val msg_alterar = result.data?.getStringExtra("ALTERAR")
+            val msg_alterar = result.data?.getStringExtra("SENHA_NOVA")
+            val msg_senha_velha = result.data?.getStringExtra("SENHA_VELHA")
 
-            if (msg_alterar != null) {
-                val e = separarString(msg_alterar)
+            if (msg_alterar != null && msg_senha_velha != null) {
+                var e = separarString(msg_alterar)
+
+                var senha_nova = Senha()
+                senha_nova.descricao = e[0]
+                senha_nova.senha = e[1]
+                senha_nova.tamanho = e[2].toInt()
+                senha_nova.contemLetrasMaiusculas = e[3].toBoolean()
+                senha_nova.contemNumeros = e[4].toBoolean()
+                senha_nova.contemCaracteresEspeciais = e[5].toBoolean()
+
+                e = separarString(msg_senha_velha)
 
                 var senha = Senha()
                 senha.descricao = e[0]
@@ -35,8 +46,8 @@ class MainActivity : AppCompatActivity() {
                 senha.contemNumeros = e[4].toBoolean()
                 senha.contemCaracteresEspeciais = e[5].toBoolean()
 
-                Log.i("SENHA CRIADA", "${senha.senha}")
-                //(lvSenhas.adapter as Adapter).alterar(senha)
+                //Log.i("SENHA CRIADA", "${senha.senha}")
+                (lvSenhas.adapter as Adapter).alterar(senha, senha_nova)
             }
 
             if (msg_excluir != null) {

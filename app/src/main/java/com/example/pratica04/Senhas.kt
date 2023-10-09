@@ -26,6 +26,13 @@ class Senhas {
         }
     }
 
+    fun alterar(senhaAntiga: Senha, novaSenha: Senha) {
+        val indice = listaSenhas.indexOfFirst { it.descricao == senhaAntiga.descricao }
+        if (indice != -1) {
+            listaSenhas[indice] = novaSenha
+        }
+    }
+
     fun listarSenhas(): String {
         return listaSenhas.joinToString("###") { it.toString() }
     }
