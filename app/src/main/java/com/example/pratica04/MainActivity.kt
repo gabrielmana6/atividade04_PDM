@@ -21,6 +21,39 @@ class MainActivity : AppCompatActivity() {
     private val resultForm = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             val msg = result.data?.getStringExtra("MSG")
+            val msg_excluir = result.data?.getStringExtra("DELETE")
+            val msg_alterar = result.data?.getStringExtra("ALTERAR")
+
+            if (msg_alterar != null) {
+                val e = separarString(msg_alterar)
+
+                var senha = Senha()
+                senha.descricao = e[0]
+                senha.senha = e[1]
+                senha.tamanho = e[2].toInt()
+                senha.contemLetrasMaiusculas = e[3].toBoolean()
+                senha.contemNumeros = e[4].toBoolean()
+                senha.contemCaracteresEspeciais = e[5].toBoolean()
+
+                Log.i("SENHA CRIADA", "${senha.senha}")
+                //(lvSenhas.adapter as Adapter).alterar(senha)
+            }
+
+            if (msg_excluir != null) {
+                val e = separarString(msg_excluir)
+
+                var senha = Senha()
+                senha.descricao = e[0]
+                senha.senha = e[1]
+                senha.tamanho = e[2].toInt()
+                senha.contemLetrasMaiusculas = e[3].toBoolean()
+                senha.contemNumeros = e[4].toBoolean()
+                senha.contemCaracteresEspeciais = e[5].toBoolean()
+
+                Log.i("SENHA CRIADA", "${senha.senha}")
+                (lvSenhas.adapter as Adapter).remove(senha)
+                println(senhas.listaSenhas)
+            }
 
             if (msg != null) {
                 val e = separarString(msg)

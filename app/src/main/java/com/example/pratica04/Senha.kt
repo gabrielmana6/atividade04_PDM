@@ -56,4 +56,13 @@ class Senha(){
         return senha.any { caracteresEspeciais.contains(it) }
     }
 
+    override fun toString(): String {
+        return "Descrição: $descricao\n" +
+                "Tamanho: $tamanho\n" +
+                "Contém Letras Maiúsculas: $contemLetrasMaiusculas\n" +
+                "Contém Números: $contemNumeros\n" +
+                "Contém Caracteres Especiais: $contemCaracteresEspeciais\n" +
+                "Senha: $senha"
+    }
+
 }

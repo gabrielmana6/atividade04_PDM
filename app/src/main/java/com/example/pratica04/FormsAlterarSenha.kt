@@ -87,13 +87,34 @@ class FormsAlterarSenha : AppCompatActivity() {
                     "${senha.contemCaracteresEspeciais}"
 
             val intent = Intent().apply {
-                putExtra("MSG", "${msg}")
+                putExtra("ALTERAR", "${msg}")
             }
             setResult(RESULT_OK, intent)
             finish()
         }
 
-        //btnExcluir.setOnClickListener {  }
+        btnExcluir.setOnClickListener {
+            senha.descricao = editText.text.toString()
+            senha.tamanho = slider.value.toInt()
+            senha.contemLetrasMaiusculas = check1.isChecked
+            senha.contemNumeros = check2.isChecked
+            senha.contemCaracteresEspeciais = check3.isChecked
+
+            senha.gerarSenha()
+
+            val msg = "${senha.descricao};" +
+                    "${senha.senha};" +
+                    "${senha.tamanho};" +
+                    "${senha.contemLetrasMaiusculas};" +
+                    "${senha.contemNumeros};" +
+                    "${senha.contemCaracteresEspeciais}"
+
+            val intent = Intent().apply {
+                putExtra("DELETE", "${msg}")
+            }
+            setResult(RESULT_OK, intent)
+            finish()
+        }
 
         btnCancelar.setOnClickListener{
             finish()

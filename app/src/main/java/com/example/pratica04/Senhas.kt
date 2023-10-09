@@ -19,7 +19,16 @@ class Senhas {
     }
 
     fun remove(senha: Senha) {
-        this.listaSenhas.remove(senha)
+        val descricao = senha.descricao
+        val senhaRemovida = listaSenhas.firstOrNull { it.descricao == descricao }
+        if (senhaRemovida != null) {
+            listaSenhas.remove(senhaRemovida)
+        }
     }
+
+    fun listarSenhas(): String {
+        return listaSenhas.joinToString("###") { it.toString() }
+    }
+
 
 }
